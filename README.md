@@ -9,3 +9,5 @@ This is a large project that I will be working on extensively utilizing the foll
 * VueJS
 * JWT
 * and others
+
+More information is to come.
