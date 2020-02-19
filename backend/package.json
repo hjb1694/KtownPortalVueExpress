@@ -4,7 +4,8 @@
   "description": "Backend API for KTOWN Portal using ExpressJS",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start" : "node app", 
+    "start-dev" : "nodemon app"
   },
   "keywords": [
     "KTOWN",
@@ -13,5 +14,8 @@
     "API"
   ],
   "author": "Hayden Bradfield",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
 }
