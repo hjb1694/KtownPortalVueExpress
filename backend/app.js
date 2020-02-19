@@ -9,13 +9,8 @@ const app = express();
 app.use(express.json());
 app.use(fileUpload());
 
-app.get('/', async (req,res) => {
-
-    const result = await User.userExists(1);
-
-    console.log(result);
-
-});
+//routes 
+app.use('/auth', require('./routes/auth'));
 
 
 app.listen(config.port, () => console.log(`Listening on port ${config.port}`));
