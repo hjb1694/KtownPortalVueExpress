@@ -1,5 +1,7 @@
 const sanitizeHTML = require('sanitize-html');
 const Entities = require('html-entities').AllHtmlEntities;
+const jwt = require('jsonwebtoken');
+const config = require('../config/config');
 
 const entities = new Entities();
 
@@ -34,6 +36,16 @@ const helpers = {
     sanitizeTextArea(value){
 
         return helpers.stripExcessWhitespaceTextArea(helpers.stripTags(helpers.htmlEntityDecode(value)));
+
+    }, 
+    signUserToken({userId, role}){
+
+        return jwt.sign({
+            userId, 
+            role
+        }, config.jwt.secret, {
+            expiresIn : '1 hour'
+        });
 
     }
 }

@@ -10,7 +10,7 @@ const User = {
             try {
 
                 const qry = `
-                INSERT INTO users(username, email, password, dob, vericode)
+                INSERT INTO users(username, email, password, dob, verification_code)
                 VALUES(?,?,?,?,?)
                 `;
 

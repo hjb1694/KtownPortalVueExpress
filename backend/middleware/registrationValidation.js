@@ -9,21 +9,14 @@ module.exports = [
 
         value = sanitizeTextField(value);
 
-        try{
 
-            const exists = await User.emailExists(value);
+        const exists = await User.emailExists(value);
 
-            if(exists) 
-                throw new Error('this email address already exists!');
+        if(exists) 
+            throw new Error('this email address already exists!');
 
-            return true;
+        return true;
 
-
-        }catch(e){
-
-            throw new Error('A server error has occurred.');
-
-        }
 
     }),
     check('username').custom(value => {
@@ -40,20 +33,14 @@ module.exports = [
 
         value = sanitizeTextField(value);
 
-        try{
+        const exists = await User.usernameExists(value);
 
-            const exists = await User.usernameExists(value);
+        if(exists)
+            throw new Error('This username already exists');
 
-            if(exists)
-                throw new Error('This username already exists');
+        return true;
 
-            return true;
-
-        }catch(e){
-
-            throw new Error('A server error has occurred.');
-
-        }
+    
     }), 
     check('dob').custom(value => {
 
