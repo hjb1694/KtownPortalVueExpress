@@ -1,0 +1,8 @@
+
+
+exports.newPost = (req,res) => {
+
+
+
+
+}

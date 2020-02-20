@@ -30,12 +30,12 @@ const helpers = {
     }, 
     sanitizeTextField(value){
 
-        return helpers.stripExcessWhitespaceTextField(helpers.stripTags(helpers.htmlEntityDecode(value)));
+        return helpers.stripExcessWhitespaceTextField(helpers.stripTags(helpers.htmlEntityDecode(value))).trim();
 
     }, 
     sanitizeTextArea(value){
 
-        return helpers.stripExcessWhitespaceTextArea(helpers.stripTags(helpers.htmlEntityDecode(value)));
+        return helpers.stripExcessWhitespaceTextArea(helpers.stripTags(helpers.htmlEntityDecode(value))).trim();
 
     }, 
     signUserToken({userId, role}){
