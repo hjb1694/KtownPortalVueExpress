@@ -74,6 +74,33 @@ const User = {
             }
 
         });
+    }, 
+    findUserByEmail(email){
+
+        return new Promise(async (resolve, reject) => {
+
+            try{
+
+                const qry = `
+                SELECT * FROM users 
+                WHERE email = ?
+                `;
+
+                const [rows] = await db.execute(qry, [email]);
+
+                resolve(rows[0]);
+
+
+            }catch(e){
+
+                reject(e);
+
+            }
+
+
+
+        });
+
     }
 }
 

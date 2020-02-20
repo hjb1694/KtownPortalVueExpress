@@ -36,6 +36,60 @@ exports.register = async (req,res) => {
 
     }catch(e){
 
+        console.log(e);
+
+        res.status(500).json({
+            errors : [
+                {msg : 'A server error has occurred.'}
+            ]
+        });
+
+    }
+
+
+
+}
+
+
+exports.login = async (req,res) => {
+
+    const {email, password} = req.body;
+
+    try {
+
+        const user = await User.findUserByEmail(email);
+
+        if(!user){
+
+            return res.status(404).json({
+                errors : [
+                    {msg : 'The credentials you entered are invalid or the user does not exist.'}
+                ]
+            });
+
+        }
+
+        const matched = bcrypt.compareSync(password, user.password);
+
+        if(!matched){
+
+            return res.status(404).json({
+                errors : [
+                    {msg : 'The credentials you entered are invalid or the user does not exist.'}
+                ]
+            });
+
+        }
+
+        return res.json({
+            userId : user.id, 
+            token : signUserToken(user.id, user.role)
+        });
+
+
+    }catch(e){
+
+        console.log(e);
         res.status(500).json({
             errors : [
                 {msg : 'A server error has occurred.'}
