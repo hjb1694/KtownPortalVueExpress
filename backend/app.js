@@ -11,6 +11,7 @@ app.use(fileUpload());
 
 //routes 
 app.use('/auth', require('./routes/auth'));
+app.use('/forum', require('./routes/forum'));
 
 
 app.listen(config.port, () => console.log(`Listening on port ${config.port}`));
