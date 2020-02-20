@@ -101,6 +101,34 @@ const User = {
 
         });
 
+    }, 
+    checkIfVerified(userId){
+
+        return new Promise(async (resolve, reject) => {
+
+            try{
+
+                const qry = `
+                SELECT is_verfied
+                FROM users 
+                WHERE id = ?
+                `;
+
+                const [rows] = await db.execute(qry, [userId]);
+
+                rows[0].isVerified == 1 ? resolve(true) : resolve(false);
+
+
+            }catch(e){
+
+                reject(e);
+
+            }
+
+
+        });
+
+
     }
 }
 
