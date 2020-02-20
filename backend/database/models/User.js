@@ -109,14 +109,15 @@ const User = {
             try{
 
                 const qry = `
-                SELECT is_verfied
+                SELECT is_verified
                 FROM users 
                 WHERE id = ?
                 `;
 
                 const [rows] = await db.execute(qry, [userId]);
 
-                rows[0].isVerified == 1 ? resolve(true) : resolve(false);
+
+                rows[0].is_verified == 1 ? resolve(true) : resolve(false);
 
 
             }catch(e){

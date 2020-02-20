@@ -95,7 +95,7 @@ exports.login = async (req,res) => {
 
         return res.json({
             userId : user.id, 
-            token : signUserToken(user.id, user.role)
+            token : signUserToken({userId : user.id, role : user.role})
         });
 
 

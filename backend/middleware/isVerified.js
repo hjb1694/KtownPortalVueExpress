@@ -4,9 +4,11 @@ module.exports = async (req,res,next) => {
 
     try{
 
-        const isVerfied = await User.checkIfVerified(req.userId);
+        console.log('userId is ', req.userId);
 
-        if(!isVerifed)
+        const isVerified = await User.checkIfVerified(req.userId);
+
+        if(!isVerified)
             return res.status(403).json({
                 errors : [
                     {msg : 'User has not been verified yet.'}
