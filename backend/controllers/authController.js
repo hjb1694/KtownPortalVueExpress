@@ -2,7 +2,14 @@ const {validationResult} = require('express-validator');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid/v4');
 const User = require('../database/models/User');
+const UserProfile = require('../database/models/UserProfile');
 const {signUserToken, sanitizeTextField} = require('../util/helpers');
+
+
+/*
+POST /auth/register
+Public 
+*/
 
 exports.register = async (req,res) => {
 
@@ -27,6 +34,8 @@ exports.register = async (req,res) => {
             vericode
         });
 
+        await UserProfile.create(insertId);
+
         res.json({
             userId : insertId,
             token : signUserToken({userId : insertId, role : 1}) 
@@ -50,7 +59,10 @@ exports.register = async (req,res) => {
 
 }
 
-
+/* 
+POST /auth/login
+Public
+*/
 exports.login = async (req,res) => {
 
     const {email, password} = req.body;
